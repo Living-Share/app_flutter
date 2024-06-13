@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
@@ -112,6 +113,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SvgPicture.asset(
+              'assets/images/logo-v1.svg',
+              width: 160,
+              height: 160,
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
