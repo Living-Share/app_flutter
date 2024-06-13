@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DevCoopTextStyle {
+class TextStyles {
   static const bold_50 = TextStyle(
-    fontFamily: "GmarketSansB",
-    fontStyle: FontStyle.normal,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.bold,
     fontSize: 50.0,
   );
 }
