@@ -16,8 +16,14 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            DoWorkContainer(),
-            DoWorkContainer(),
+            DoWorkContainer(
+              title: '홍홍홍',
+              isDoWork: true,
+            ),
+            DoWorkContainer(
+              title: '준푱',
+              isDoWork: true,
+            ),
           ],
         ),
       ),
