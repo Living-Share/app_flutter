@@ -33,7 +33,7 @@ class _LoadingPageState extends State<LoadingPage> {
   void initState() {
     super.initState();
     // 5초 후에 HomePage로 이동
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Get.to(const HomePage());
     });
   }
