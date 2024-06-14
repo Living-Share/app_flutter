@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/container_box.dart';
-import 'package:living_share_app/style/theme/Colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
