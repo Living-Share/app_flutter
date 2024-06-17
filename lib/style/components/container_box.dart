@@ -8,7 +8,6 @@ Container DoWorkContainer({
   required bool isDoWork,
 }) {
   return Container(
-    padding: const EdgeInsets.fromLTRB(44, 0, 44, 0),
     margin: const EdgeInsets.only(top: 20),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,

@@ -6,4 +6,11 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     fontSize: 50.0,
   );
+
+  static const main_title_100 = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    fontSize: 40.0,
+  );
 }
