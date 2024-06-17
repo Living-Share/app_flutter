@@ -18,12 +18,21 @@ Container DoWorkContainer({
           height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: isDoWork ? ThemeColors.primary : ThemeColors.black,
+            color: isDoWork ? ThemeColors.primary : ThemeColors.falseRed,
           ),
           child: Center(
-            child: Text(title),
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Text(title),
+                  ],
+                ),
+                const Text("호롱롱"),
+              ],
+            ),
           ),
-        )
+        ),
       ],
     ),
   );

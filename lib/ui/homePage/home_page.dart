@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             ),
             DoWorkContainer(
               title: '준푱',
-              isDoWork: true,
+              isDoWork: false,
             ),
           ],
         ),
