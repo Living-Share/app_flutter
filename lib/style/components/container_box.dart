@@ -21,6 +21,14 @@ Container DoWorkContainer({
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: isDoWork ? ThemeColors.primary : ThemeColors.falseRed,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5), // 그림자 색상
+                spreadRadius: 2, // 그림자 확산 정도
+                blurRadius: 5, // 그림자 흐림 정도
+                offset: const Offset(0, 3), // 그림자 위치 (x, y)
+              ),
+            ],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
