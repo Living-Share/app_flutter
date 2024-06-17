@@ -14,8 +14,8 @@ Container DoWorkContainer({
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: Get.width,
-          height: 120,
+          width: Get.width, // 100%
+          height: 120, 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: isDoWork ? ThemeColors.primary : ThemeColors.falseRed,
