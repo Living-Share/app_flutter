@@ -23,11 +23,8 @@ class HomePage extends StatelessWidget {
             ),
             DoWorkContainer(
               title: '홍홍홍',
+              user_name: "찢찢찢",
               isDoWork: true,
-            ),
-            DoWorkContainer(
-              title: '준푱',
-              isDoWork: false,
             ),
           ],
         ),

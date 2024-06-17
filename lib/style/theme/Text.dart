@@ -13,4 +13,18 @@ class TextStyles {
     color: Colors.black,
     fontSize: 40.0,
   );
+
+  static const doWorkContainer_title = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontSize: 24.0,
+  );
+
+  static const doWorkContainer_name = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontSize: 16.0,
+  );
 }
