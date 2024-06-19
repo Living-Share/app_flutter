@@ -21,10 +21,29 @@ class HomePage extends StatelessWidget {
               textAlign: TextAlign.start,
               style: TextStyles.main_title_100,
             ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "오늘 해야할 일이에요 ⏰",
+                  style: TextStyles.main_title_50,
+                ),
+                Text(
+                  "12/12(월)",
+                  style: TextStyles.main_day_50,
+                )
+              ],
+            ),
             DoWorkContainer(
               title: '홍홍홍',
               user_name: "찢찢찢",
               isDoWork: true,
+            ),
+            DoWorkContainer(
+              title: '퐁퐁퐁',
+              user_name: "쥐피티",
+              isDoWork: false,
             ),
           ],
         ),

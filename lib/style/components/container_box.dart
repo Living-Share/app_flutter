@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
@@ -46,7 +45,7 @@ Container DoWorkContainer({
                       height: 23, // 원의 지름과 같은 값으로 설정
                       color: Colors.blue, // 프로필 박스의 배경색
                       child: Image.network(
-                        'https://item.kakaocdn.net/do/58119590d6204ebd70e97763ca933baf9f5287469802eca457586a25a096fd31', // 이미지 URL
+                        '', // 이미지 URL
                         width: 25, // 이미지의 너비
                         height: 25, // 이미지의 높이
                         fit: BoxFit.cover, // 이미지를 박스에 맞추기 위해 cover 사용

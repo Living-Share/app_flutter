@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:living_share_app/ui/homePage/home_page.dart'; // get 패키지의 모든 것을 가져오기
+import 'package:living_share_app/ui/homePage/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp( // MaterialApp 대신 GetMaterialApp 사용
+    return GetMaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -32,9 +32,9 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
-    // 5초 후에 HomePage로 이동
+    // 3초 후에 HomePage로 이동
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(const HomePage());
+      Get.to(() => const HomePage());
     });
   }
 
