@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 
 class TextStyles {
-
   static const main_title_100 = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w600,
@@ -24,6 +23,27 @@ class TextStyles {
     fontSize: 14.0,
   );
 
+  static const event_box_100 = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w500,
+    color: ThemeColors.black,
+    fontSize: 16.0,
+  );
+
+  static const event_box_200_white = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w400,
+    color: ThemeColors.white,
+    fontSize: 20.0,
+  );
+
+  static const event_box_200_black = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w400,
+    color: ThemeColors.black,
+    fontSize: 20.0,
+  );
+
   static const doWorkContainer_title = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w700,
@@ -37,5 +57,4 @@ class TextStyles {
     color: ThemeColors.white,
     fontSize: 16.0,
   );
-
 }
