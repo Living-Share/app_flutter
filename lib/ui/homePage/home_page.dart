@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/container_box.dart';
 import 'package:living_share_app/style/components/container_event_box.dart';
+import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
 class HomePage extends StatelessWidget {
@@ -63,6 +64,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomBar(),
     );
   }
 }
