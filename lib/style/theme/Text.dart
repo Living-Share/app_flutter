@@ -23,6 +23,11 @@ class TextStyles {
     fontSize: 14.0,
   );
 
+  static const event_box_custom = TextStyle(
+    fontFamily: 'Pretendart',
+    color: ThemeColors.white,
+  );
+
   static const event_box_100 = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w500,
@@ -43,6 +48,7 @@ class TextStyles {
     color: ThemeColors.black,
     fontSize: 20.0,
   );
+
 
   static const doWorkContainer_title = TextStyle(
     fontFamily: 'Pretendart',

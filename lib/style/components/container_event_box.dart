@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:living_share_app/style/components/home_event_type.dart';
+import 'package:living_share_app/style/components/profile_box.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
+import 'package:living_share_app/style/theme/Text.dart';
 
 Container EventBox({
   required String whoEvent,
@@ -25,6 +27,40 @@ Container EventBox({
           children: [
             EventTypeBox(child: "방문"),
             EventTypeBox(child: "수정하기"),
+          ],
+        ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Profile_box(
+              size: 45.0,
+            ),
+            const SizedBox(
+              width: 15.0,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "사랑꾼",
+                  style: TextStyles.event_box_custom.copyWith(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  whoEvent,
+                  style: TextStyles.event_box_custom.copyWith(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
         Text(whatEvent),
