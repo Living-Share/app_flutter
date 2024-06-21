@@ -48,6 +48,22 @@ class TextStyles {
     color: ThemeColors.black,
     fontSize: 20.0,
   );
+  
+  static const event_box_300_white = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w400,
+    color: ThemeColors.white,
+    fontSize: 14.0,
+  );
+
+  static const event_box_500_white = TextStyle(
+    fontFamily: 'Pretendart',
+    fontWeight: FontWeight.w700,
+    color: ThemeColors.white,
+    fontSize: 28.0,
+    letterSpacing: -1.0,
+    height: 1.2,
+  );
 
 
   static const doWorkContainer_title = TextStyle(

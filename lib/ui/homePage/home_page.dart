@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               ),
               EventBox(
                 whoEvent: "이희성",
-                whatEvent: "이희성여자친구 배유정 올거임",
+                whatEvent: "이희성여자친구 배유정 올거임 아무튼 그럼",
                 whenEvent: "2025.02.11",
                 time: "05:12~04:12",
               ),

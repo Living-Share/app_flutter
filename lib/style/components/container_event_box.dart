@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:living_share_app/style/components/home_event_type.dart';
 import 'package:living_share_app/style/components/profile_box.dart';
@@ -11,7 +12,7 @@ Container EventBox({
   required String whenEvent,
   required String time,
 }) {
-  return (Container(
+  return Container(
     width: Get.width,
     height: 320.0,
     decoration: BoxDecoration(
@@ -21,6 +22,7 @@ Container EventBox({
     padding: const EdgeInsets.fromLTRB(20, 26, 20, 26),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,8 +65,35 @@ Container EventBox({
             )
           ],
         ),
-        Text(whatEvent),
+        const Spacer(),
+        Text(
+          whatEvent,
+          style: TextStyles.event_box_500_white,
+        ),
+        const Padding(
+          padding:
+              EdgeInsets.fromLTRB(0, 10, 10, 0), // Margin top and bottom 12
+          child: Divider(),
+        ),
+        Text(
+          whenEvent,
+          style: TextStyles.event_box_300_white,
+        ),
+        Row(
+          children: [
+            SvgPicture.asset(
+              "images/clock-icon.svg",
+            ),
+            const SizedBox(
+              width: 5.0,
+            ),
+            Text(
+              time,
+              style: TextStyles.event_box_300_white,
+            ),
+          ],
+        ),
       ],
     ),
-  ));
+  );
 }
