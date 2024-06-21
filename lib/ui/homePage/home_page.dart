@@ -24,10 +24,14 @@ class HomePage extends StatelessWidget {
                 style: TextStyles.main_title_100,
               ),
               EventBox(
-                  whoEvent: "이희성",
-                  whatEvent: "이희성여자친구 배유정 올거임",
-                  whenEvent: "2025.02.11",
-                  time: "05:12~04:12"),
+                whoEvent: "이희성",
+                whatEvent: "이희성여자친구 배유정 올거임",
+                whenEvent: "2025.02.11",
+                time: "05:12~04:12",
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,6 +55,9 @@ class HomePage extends StatelessWidget {
                 title: '퐁퐁퐁',
                 user_name: "쥐피티",
                 isDoWork: false,
+              ),
+              const SizedBox(
+                height: 50.0,
               ),
             ],
           ),
