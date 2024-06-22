@@ -2,23 +2,26 @@ import 'package:flutter/material.dart';
 
 BottomNavigationBar BottomBar() {
   return BottomNavigationBar(
+    type: BottomNavigationBarType.fixed, // 아이템 너비 균일하게 유지
     selectedItemColor: Colors.black, // 선택된 아이템 색상
     unselectedItemColor: Colors.black, // 선택되지 않은 아이템 색상
+    selectedFontSize: 0, // 선택된 아이템의 폰트 크기
+    unselectedFontSize: 0, // 선택되지 않은 아이템의 폰트 크기
     items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.home),
+        icon: Icon(Icons.home, size: 30), // 아이콘 크기 설정
         label: "",
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.calendar_today),
+        icon: Icon(Icons.calendar_today, size: 30), // 아이콘 크기 설정
         label: "",
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.attach_money),
+        icon: Icon(Icons.attach_money, size: 30), // 아이콘 크기 설정
         label: "",
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.person),
+        icon: Icon(Icons.person, size: 30), // 아이콘 크기 설정
         label: "",
       ),
     ],
