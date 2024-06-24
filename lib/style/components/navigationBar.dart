@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:living_share_app/ui/homePage/home_page.dart';
+import 'package:living_share_app/ui/homePage/money_page.dart';
+import 'package:living_share_app/ui/homePage/profile_page.dart';
+import 'package:living_share_app/ui/homePage/schedule_registration.dart';
 
 BottomNavigationBar BottomBar() {
   return BottomNavigationBar(
@@ -12,16 +15,16 @@ BottomNavigationBar BottomBar() {
     onTap: (index) {
       switch (index) {
         case 0:
-          Get.to(A());
+          Get.to(const HomePage());
           break;
         case 1:
-          Get.to(B());
+          Get.to(const ScheduleRegistration());
           break;
         case 2:
-          Get.to(C());
+          Get.to(const MoneyPage());
           break;
         case 3:
-          Get.to(D());
+          Get.to(const ProfilePage());
           break;
       }
     },
