@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
+import 'package:living_share_app/style/components/send_money_box.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
 class MoneyPage extends StatelessWidget {
@@ -27,6 +27,21 @@ class MoneyPage extends StatelessWidget {
               style: YangjuTextStyles.month_money,
             ),
             Image.asset("images/piggy-bank.png"),
+            const Padding(
+              padding:
+                  EdgeInsets.fromLTRB(0, 0, 0, 10), // Margin top and bottom 12
+              child: Divider(),
+            ),
+            IsSendMoney(
+              isSend: true,
+              userName: "인생씁다",
+              money: 25000,
+            ),
+            IsSendMoney(
+              isSend: false,
+              userName: "인생씁다",
+              money: 25000,
+            ),
           ],
         ),
       ),
