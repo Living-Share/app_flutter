@@ -78,6 +78,16 @@ class TextStyles {
     color: ThemeColors.white,
     fontSize: 16.0,
   );
+
+  static const custom_pretendart_font_white = TextStyle(
+    fontFamily: 'Pretendart',
+    color: ThemeColors.white,
+  );
+
+  static const custom_pretendart_font_black = TextStyle(
+    fontFamily: 'Pretendart',
+    color: ThemeColors.white,
+  );
 }
 
 class YangjuTextStyles {

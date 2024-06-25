@@ -30,19 +30,41 @@ class MoneyPage extends StatelessWidget {
             ),
             Image.asset("images/piggy-bank.png"),
             const Padding(
-              padding:
-                  EdgeInsets.fromLTRB(0, 0, 0, 10),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
               child: Divider(),
             ),
-            IsSendMoney(
-              isSend: true,
-              userName: "인생씁다",
-              money: 25000,
-            ),
-            IsSendMoney(
-              isSend: false,
-              userName: "인생씁다",
-              money: 25000,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    IsSendMoney(
+                      isSend: false,
+                      userName: "인생씁다",
+                      money: 25000,
+                    ),
+                    IsSendMoney(
+                      isSend: false,
+                      userName: "인생씁다",
+                      money: 25000,
+                    ),
+                    IsSendMoney(
+                      isSend: false,
+                      userName: "인생씁다",
+                      money: 25000,
+                    ),
+                    IsSendMoney(
+                      isSend: true,
+                      userName: "인생씁다",
+                      money: 25000,
+                    ),
+                    IsSendMoney(
+                      isSend: false,
+                      userName: "인생씁다",
+                      money: 25000,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
