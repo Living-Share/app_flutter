@@ -48,7 +48,7 @@ class TextStyles {
     color: ThemeColors.black,
     fontSize: 20.0,
   );
-  
+
   static const event_box_300_white = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w400,
@@ -65,7 +65,6 @@ class TextStyles {
     height: 1.2,
   );
 
-
   static const doWorkContainer_title = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w700,
@@ -78,5 +77,13 @@ class TextStyles {
     fontWeight: FontWeight.w700,
     color: ThemeColors.white,
     fontSize: 16.0,
+  );
+}
+
+class YangjuTextStyles {
+  static const month_money = TextStyle(
+    fontFamily: "YangjuByeolsanA1",
+    fontSize: 25.0,
+    fontWeight: FontWeight.w600,
   );
 }
