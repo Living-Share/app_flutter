@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/components/send_money_box.dart';
@@ -10,6 +11,7 @@ class MoneyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NumberFormat currencyFormat = NumberFormat('#,###,##0');
     return Scaffold(
       appBar: CustomAppbar(),
       body: Container(
@@ -22,14 +24,14 @@ class MoneyPage extends StatelessWidget {
               "이번달 지출액",
               style: YangjuTextStyles.month_money,
             ),
-            const Text(
-              "100000",
+            Text(
+              currencyFormat.format(72592945),
               style: YangjuTextStyles.month_money,
             ),
             Image.asset("images/piggy-bank.png"),
             const Padding(
               padding:
-                  EdgeInsets.fromLTRB(0, 0, 0, 10), // Margin top and bottom 12
+                  EdgeInsets.fromLTRB(0, 0, 0, 10),
               child: Divider(),
             ),
             IsSendMoney(

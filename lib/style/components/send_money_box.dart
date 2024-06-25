@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
+import 'package:living_share_app/style/theme/Text.dart';
 
 Container IsSendMoney({
   required bool isSend,
   required String userName,
   required int money,
 }) {
+  final NumberFormat currencyFormat = NumberFormat('#,##0');
   return Container(
     width: Get.width,
     height: 110.0,
@@ -24,10 +27,20 @@ Container IsSendMoney({
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(userName),
-              Text("$money₩"),
+              Text(
+                currencyFormat.format(money),
+                style: YangjuTextStyles.isSend_box.copyWith(
+                  fontSize: 22.0,
+                ),
+              ),
             ],
           ),
-          Text(isSend ? "완료" : "독촉"),
+          Text(
+            isSend ? "완료" : "독촉",
+            style: YangjuTextStyles.isSend_box.copyWith(
+              fontSize: 24.0,
+            ),
+          ),
         ],
       ),
     ),

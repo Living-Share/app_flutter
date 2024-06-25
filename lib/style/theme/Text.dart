@@ -86,4 +86,10 @@ class YangjuTextStyles {
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );
+
+  static const isSend_box = TextStyle(
+    fontFamily: "YangjuByeolsanA1",
+    color: ThemeColors.white,
+    fontWeight: FontWeight.w400,
+  );
 }
