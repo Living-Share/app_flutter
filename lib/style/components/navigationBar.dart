@@ -24,7 +24,7 @@ BottomNavigationBar BottomBar() {
           Get.to(const MoneyPage());
           break;
         case 3:
-          Get.to(const ProfilePage());
+          Get.to(ProfilePage());
           break;
       }
     },

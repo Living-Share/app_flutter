@@ -88,6 +88,27 @@ class TextStyles {
     fontFamily: 'Pretendart',
     color: ThemeColors.white,
   );
+
+  static const profile_main_title = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w800,
+    fontSize: 24.0,
+    color: ThemeColors.black,
+  );
+
+  static const custom_profile_text = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w400,
+    fontSize: 22.0,
+    color: ThemeColors.black,
+  );
+
+  static const profile_input_tag = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: ThemeColors.black,
+  );
 }
 
 class YangjuTextStyles {

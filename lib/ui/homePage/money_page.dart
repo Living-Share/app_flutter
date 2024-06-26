@@ -29,10 +29,7 @@ class MoneyPage extends StatelessWidget {
               style: YangjuTextStyles.month_money,
             ),
             Image.asset("images/piggy-bank.png"),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Divider(),
-            ),
+            const Divider(),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
