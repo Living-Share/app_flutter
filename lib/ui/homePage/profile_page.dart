@@ -48,9 +48,7 @@ class ProfilePage extends StatelessWidget {
               "김뽕찬",
               style: TextStyles.custom_profile_text,
             ),
-            SizedBox(
-              height: Get.height * 0.14,
-            ),
+            const Spacer(),
             InputBox(
               controller: wordController,
               labelText: '나를 소개하는 단어를 적어주세요.',
@@ -71,16 +69,27 @@ class ProfilePage extends StatelessWidget {
                 print('전화번호: ${phoneController.text}');
               },
               child: Container(
-                width: Get.width * 0.8,
-                height: 40.0,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
+                width: Get.width * 0.7,
+                height: 50.0,
+                decoration: const BoxDecoration(
+                  color: ThemeColors.primary,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    "등록하기",
+                    style: TextStyle(
+                      color: ThemeColors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
             ),
+            const Spacer(),
           ],
         ),
       ),
