@@ -1,16 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/input_widget.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
+import 'package:living_share_app/style/components/profile_box.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  final TextEditingController wordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  void _updateUserProfile() async {
+    final response = await http.put(
+      Uri.parse('http://localhost:3000/user/2'), // 사용자 ID 2번을 수정
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name': nameController.text,
+        'phone': phoneController.text,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // 성공적으로 업데이트됨
+      Get.snackbar('성공', '사용자 정보가 성공적으로 수정되었습니다.');
+    } else {
+      // 업데이트 실패
+      Get.snackbar('실패', '사용자 정보 수정 중 오류가 발생했습니다.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,29 +54,15 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.07,
             ),
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: ThemeColors.black,
-                  width: 1.0,
-                ),
-                color: ThemeColors.n_01,
-                borderRadius: BorderRadius.circular(100.0),
-              ),
-              child: const Center(
-                child: Text("사진 추가하기"),
-              ),
-            ),
+            Profile_box(size: 100.0),
             const Text(
               "김뽕찬",
               style: TextStyles.custom_profile_text,
             ),
             const Spacer(),
             InputBox(
-              controller: wordController,
-              labelText: '나를 소개하는 단어를 적어주세요.',
+              controller: nameController,
+              labelText: '닉네임을 입력하세요.',
             ),
             SizedBox(
               height: Get.height * 0.04,
@@ -64,10 +75,7 @@ class ProfilePage extends StatelessWidget {
               height: Get.height * 0.1,
             ),
             GestureDetector(
-              onTap: () {
-                print('나를 소개하는 단어: ${wordController.text}');
-                print('전화번호: ${phoneController.text}');
-              },
+              onTap: _updateUserProfile,
               child: Container(
                 width: Get.width * 0.7,
                 height: 50.0,

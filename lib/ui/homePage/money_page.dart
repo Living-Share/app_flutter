@@ -44,21 +44,6 @@ class MoneyPage extends StatelessWidget {
                       userName: "인생씁다",
                       money: 25000,
                     ),
-                    IsSendMoney(
-                      isSend: false,
-                      userName: "인생씁다",
-                      money: 25000,
-                    ),
-                    IsSendMoney(
-                      isSend: true,
-                      userName: "인생씁다",
-                      money: 25000,
-                    ),
-                    IsSendMoney(
-                      isSend: false,
-                      userName: "인생씁다",
-                      money: 25000,
-                    ),
                   ],
                 ),
               ),
