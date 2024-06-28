@@ -210,11 +210,13 @@ class _ThemeContainerState extends State<ThemeContainer> {
                     ),
                     Switch(
                       value: _switchValue,
+                      activeColor: ThemeColors.primary, // true일 때 색상
+                      inactiveThumbColor:
+                          ThemeColors.falseRed, // false일 때 버튼 색상
                       onChanged: (value) {
                         setState(() {
                           _switchValue = value;
                         });
-                        // 여기에 스위치 버튼이 변경될 때 수행할 작업을 추가할 수 있습니다.
                         print(_switchValue); // 스위치의 상태를 출력합니다.
                       },
                     ),
