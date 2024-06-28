@@ -3,84 +3,220 @@ import 'package:get/get.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
-GestureDetector DoWorkContainer({
-  required String title,
-  required String user_name,
-  required bool isDoWork,
-  required dynamic context,
-}) {
-  return GestureDetector(
-    onTap: () {
-      showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            width: Get.width,
-            height: 300, // 모달 높이 크기
-            decoration: const BoxDecoration(
-              color: Colors.white, // 모달 배경색
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(0), // 모달 좌상단 라운딩 처리
-                topRight: Radius.circular(0), // 모달 우상단 라운딩 처리
+class DoWorkContainer extends StatelessWidget {
+  final String title;
+  final String user_name;
+  final bool isDoWork;
+  final dynamic context;
+
+  const DoWorkContainer({
+    Key? key,
+    required this.title,
+    required this.user_name,
+    required this.isDoWork,
+    required this.context,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+              width: Get.width,
+              padding: const EdgeInsets.fromLTRB(45.0, 24, 45.0, 0),
+              decoration: const BoxDecoration(
+                color: Colors.white, // 모달 배경색
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0), // 모달 좌상단 라운딩 처리
+                  topRight: Radius.circular(10.0), // 모달 우상단 라운딩 처리
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    "오늘의 일을 확인하고 완료하세요.",
+                    style: TextStyle(
+                      fontFamily: 'Pretendart',
+                      fontSize: 24.0,
+                      color: ThemeColors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  ThemeContainer(
+                    title: title,
+                    user_name: user_name,
+                    isDoWork: isDoWork,
+                    context: context,
+                  ),
+                ],
+              ), // 모달 내부 디자인 영역
+            );
+          },
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: Get.width, // 100%
+              padding: const EdgeInsets.fromLTRB(24, 25, 0, 25),
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: isDoWork ? ThemeColors.primary : ThemeColors.falseRed,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5), // 그림자 색상
+                    spreadRadius: 2, // 그림자 확산 정도
+                    blurRadius: 5, // 그림자 흐림 정도
+                    offset: const Offset(0, 3), // 그림자 위치 (x, y)
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyles.doWorkContainer_title,
+                  ),
+                  Row(
+                    children: [
+                      ClipOval(
+                        child: Container(
+                          width: 23, // 원의 지름과 같은 값으로 설정
+                          height: 23, // 원의 지름과 같은 값으로 설정
+                          color: Colors.blue, // 프로필 박스의 배경색
+                          child: Image.network(
+                            '', // 이미지 URL
+                            width: 25, // 이미지의 너비
+                            height: 25, // 이미지의 높이
+                            fit: BoxFit.cover, // 이미지를 박스에 맞추기 위해 cover 사용
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6.0,
+                      ),
+                      Text(
+                        user_name,
+                        style: TextStyles.doWorkContainer_name.copyWith(
+                          color: Colors.white, // 텍스트의 색상
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            child: Text("hi"), // 모달 내부 디자인 영역
-          );
-        },
-      );
-    },
-    child: Container(
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThemeContainer extends StatefulWidget {
+  final String title;
+  final String user_name;
+  final bool isDoWork;
+  final dynamic context;
+
+  const ThemeContainer({
+    Key? key,
+    required this.title,
+    required this.user_name,
+    required this.isDoWork,
+    required this.context,
+  }) : super(key: key);
+
+  @override
+  _ThemeContainerState createState() => _ThemeContainerState();
+}
+
+class _ThemeContainerState extends State<ThemeContainer> {
+  bool _switchValue = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             width: Get.width, // 100%
-            padding: const EdgeInsets.fromLTRB(24, 25, 0, 25),
+            padding: const EdgeInsets.fromLTRB(24, 25, 25, 25),
             height: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: isDoWork ? ThemeColors.primary : ThemeColors.falseRed,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5), // 그림자 색상
-                  spreadRadius: 2, // 그림자 확산 정도
-                  blurRadius: 5, // 그림자 흐림 정도
-                  offset: const Offset(0, 3), // 그림자 위치 (x, y)
-                ),
-              ],
+              borderRadius: BorderRadius.circular(10.0),
+              color: ThemeColors.white,
+              border: Border.all(
+                color: widget.isDoWork
+                    ? ThemeColors.primary
+                    : ThemeColors.falseRed, // border color
+                width: 2.0, // border width
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyles.doWorkContainer_title,
-                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ClipOval(
-                      child: Container(
-                        width: 23, // 원의 지름과 같은 값으로 설정
-                        height: 23, // 원의 지름과 같은 값으로 설정
-                        color: Colors.blue, // 프로필 박스의 배경색
-                        child: Image.network(
-                          '', // 이미지 URL
-                          width: 25, // 이미지의 너비
-                          height: 25, // 이미지의 높이
-                          fit: BoxFit.cover, // 이미지를 박스에 맞추기 위해 cover 사용
+                    Column(
+                      children: [
+                        Text(
+                          widget.title,
+                          style: TextStyles.doWorkContainer_title.copyWith(
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
+                        Row(
+                          children: [
+                            ClipOval(
+                              child: Container(
+                                width: 23, // 원의 지름과 같은 값으로 설정
+                                height: 23, // 원의 지름과 같은 값으로 설정
+                                color: Colors.blue, // 프로필 박스의 배경색
+                                child: Image.network(
+                                  '', // 이미지 URL
+                                  width: 25, // 이미지의 너비
+                                  height: 25, // 이미지의 높이
+                                  fit: BoxFit.cover, // 이미지를 박스에 맞추기 위해 cover 사용
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 6.0,
+                            ),
+                            Text(
+                              widget.user_name,
+                              style: TextStyles.doWorkContainer_name.copyWith(
+                                color: Colors.black, // 텍스트의 색상
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 6.0,
-                    ),
-                    Text(
-                      user_name,
-                      style: TextStyles.doWorkContainer_name.copyWith(
-                        color: Colors.white, // 텍스트의 색상
-                      ),
+                    Switch(
+                      value: _switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchValue = value;
+                        });
+                        // 여기에 스위치 버튼이 변경될 때 수행할 작업을 추가할 수 있습니다.
+                        print(_switchValue); // 스위치의 상태를 출력합니다.
+                      },
                     ),
                   ],
                 ),
@@ -89,6 +225,6 @@ GestureDetector DoWorkContainer({
           ),
         ],
       ),
-    ),
-  );
+    );
+  }
 }
