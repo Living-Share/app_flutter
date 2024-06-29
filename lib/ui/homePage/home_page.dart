@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/container_box.dart';
 import 'package:living_share_app/style/components/container_event_box.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/theme/Text.dart';
+import 'package:logger/logger.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<List<dynamic>> _futureEvents;
+
+  @override
+  void initState() {
+    super.initState();
+    getHttp();
+  }
+
+  final dio = Dio();
+  var logger = Logger();
+
+  void getHttp() async {
+    try {
+      final response =
+          await dio.get('http://localhost:3000/events'); // 여기에 서버 IP 주소 사용
+      logger.d(response.data);
+    } catch (e) {
+      logger.e(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
