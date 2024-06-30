@@ -10,14 +10,48 @@ import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 import 'package:logger/web.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   ProfilePage({super.key});
 
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
   final dio = Dio();
   var logger = Logger();
+
+  String userName = "김뽕찬"; // 초기값
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserProfile();
+  }
+
+  void _getUserProfile() async {
+    try {
+      final response = await dio.get('http://localhost:3000/user/2');
+      logger.d(response.data);
+
+      // 상태 업데이트
+      setState(() {
+        userName = response.data['name'] ?? '김뽕찬'; // 기본값 설정
+        nameController.text = response.data['email'] ?? '';
+        phoneController.text = response.data['phone'] ?? '';
+      });
+    } catch (e) {
+      logger.e(e);
+      Get.snackbar(
+        '오류',
+        '사용자 정보를 가져오는 중에 중 오류가 발생했습니다.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
 
   void _updateUserProfile() async {
     final email = nameController.text;
@@ -25,7 +59,7 @@ class ProfilePage extends StatelessWidget {
 
     try {
       final response = await dio.put(
-        'http://localhost:3000/user/2', // 서버 IP 주소 사용
+        'http://localhost:3000/user/2',
         data: {
           'email': email,
           'phone': phone,
@@ -73,8 +107,8 @@ class ProfilePage extends StatelessWidget {
               height: Get.height * 0.07,
             ),
             Profile_box(size: 100.0),
-            const Text(
-              "김뽕찬",
+            Text(
+              userName,
               style: TextStyles.custom_profile_text,
             ),
             const Spacer(),
