@@ -1,7 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/input_widget.dart';
@@ -9,6 +8,7 @@ import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/components/profile_box.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
+import 'package:logger/web.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -16,24 +16,42 @@ class ProfilePage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  void _updateUserProfile() async {
-    final response = await http.put(
-      Uri.parse('http://localhost:3000/user/2'), // 사용자 ID 2번을 수정
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'name': nameController.text,
-        'phone': phoneController.text,
-      }),
-    );
+  final dio = Dio();
+  var logger = Logger();
 
-    if (response.statusCode == 200) {
-      // 성공적으로 업데이트됨
-      Get.snackbar('성공', '사용자 정보가 성공적으로 수정되었습니다.');
-    } else {
-      // 업데이트 실패
-      Get.snackbar('실패', '사용자 정보 수정 중 오류가 발생했습니다.');
+  void _updateUserProfile() async {
+    final email = nameController.text;
+    final phone = phoneController.text;
+
+    try {
+      final response = await dio.put(
+        'http://localhost:3000/user/2', // 서버 IP 주소 사용
+        data: {
+          'email': email,
+          'phone': phone,
+        },
+      );
+      logger.d(response.data);
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          '성공',
+          '사용자 정보가 업데이트되었습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } else {
+        Get.snackbar(
+          '오류',
+          '사용자 정보 업데이트 중 오류가 발생했습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      logger.e(e);
+      Get.snackbar(
+        '오류',
+        '사용자 정보 업데이트 중 오류가 발생했습니다.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
