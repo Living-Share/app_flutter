@@ -21,6 +21,9 @@ class _HomePageState extends State<HomePage> {
     getHttp();
   }
 
+  List<dynamic> events = [];
+  List<dynamic> homeWorks = [];
+
   final dio = Dio();
   var logger = Logger();
 
@@ -29,6 +32,15 @@ class _HomePageState extends State<HomePage> {
       final response =
           await dio.get('http://localhost:3000/events'); // 여기에 서버 IP 주소 사용
       logger.d(response.data);
+      final homeWorksResponse =
+          await dio.get('http://localhost:3000/homeworks'); // 여기에 서버 IP 주소 사용
+      logger.d(homeWorksResponse.data);
+
+      setState(() {
+        // 응답 데이터를 상태 변수에 저장
+        events = response.data;
+        homeWorks = homeWorksResponse.data;
+      });
     } catch (e) {
       logger.e(e);
     }
@@ -50,13 +62,16 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.start,
                 style: TextStyles.main_title_100, // TextStyles는 자신의 프로젝트에 맞게 설정
               ),
-              // EventBox 예시
-              EventBox(
-                whoEvent: "이희성",
-                whatEvent: "이희성여자친구 배유정 올거임 아무튼 그럼",
-                whenEvent: "2025.02.11",
-                time: "05:12~04:12",
-              ),
+              // EventBox 목록
+              ...events.map((event) {
+                return EventBox(
+                  whoEvent: event['user_name'], // null 값 확인 후 기본 값 사용
+                  whatEvent: event['event'] ?? '기본 이벤트',
+                  whenEvent: event['day'] ?? '날짜 없음',
+                  time: event['time'] ?? '시간 없음',
+                  type: event['type'] ?? "이벤트",
+                );
+              }).toList(),
               const SizedBox(
                 height: 10.0,
               ),
@@ -77,12 +92,14 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              // 할 일 컨테이너 예시
-              DoWorkContainer(
-                  title: '홍홍홍',
-                  user_name: "찢찢찢",
-                  isDoWork: true,
-                  context: context),
+              // 할 일 컨테이너
+              ...homeWorks.map((homework) {
+                return DoWorkContainer(
+                    title: homework["event"],
+                    user_name: homework["user_name"],
+                    isDoWork: homework["doevent"] == 0 ? false : true,
+                    context: context);
+              }).toList(),
               const SizedBox(
                 height: 50.0,
               ),

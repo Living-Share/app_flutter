@@ -11,6 +11,7 @@ Container EventBox({
   required String whatEvent,
   required String whenEvent,
   required String time,
+  required String type,
 }) {
   return Container(
     width: Get.width,
@@ -27,7 +28,7 @@ Container EventBox({
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            EventTypeBox(child: "방문"),
+            EventTypeBox(child: type),
             EventTypeBox(child: "수정하기"),
           ],
         ),
