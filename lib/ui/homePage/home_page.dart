@@ -95,10 +95,12 @@ class _HomePageState extends State<HomePage> {
               // 할 일 컨테이너
               ...homeWorks.map((homework) {
                 return DoWorkContainer(
-                    title: homework["event"],
-                    user_name: homework["user_name"],
-                    isDoWork: homework["doevent"] == 0 ? false : true,
-                    context: context);
+                  title: homework["event"],
+                  user_name: homework["user_name"],
+                  isDoWork: homework["doevent"] == 0 ? false : true,
+                  context: context,
+                  events: homeWorks,
+                );
               }).toList(),
               const SizedBox(
                 height: 50.0,

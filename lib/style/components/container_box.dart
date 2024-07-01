@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
@@ -8,6 +9,7 @@ class DoWorkContainer extends StatelessWidget {
   final String user_name;
   final bool isDoWork;
   final dynamic context;
+  final dynamic events;
 
   const DoWorkContainer({
     Key? key,
@@ -15,6 +17,7 @@ class DoWorkContainer extends StatelessWidget {
     required this.user_name,
     required this.isDoWork,
     required this.context,
+    required this.events,
   }) : super(key: key);
 
   @override
@@ -46,14 +49,23 @@ class DoWorkContainer extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  ThemeContainer(
-                    title: title,
-                    user_name: user_name,
-                    isDoWork: isDoWork,
-                    context: context,
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: events.length,
+                      itemBuilder: (context, index) {
+                        final homework = events[index];
+                        return ThemeContainer(
+                          id: homework["id"],
+                          title: homework['event'],
+                          user_name: homework['user_name'],
+                          isDoWork: homework['doevent'] == 0 ? false : true,
+                          context: context,
+                        );
+                      },
+                    ),
                   ),
                 ],
-              ), // 모달 내부 디자인 영역
+              ),
             );
           },
         );
@@ -124,6 +136,7 @@ class DoWorkContainer extends StatelessWidget {
 }
 
 class ThemeContainer extends StatefulWidget {
+  final int id;
   final String title;
   final String user_name;
   final bool isDoWork;
@@ -131,6 +144,7 @@ class ThemeContainer extends StatefulWidget {
 
   const ThemeContainer({
     Key? key,
+    required this.id,
     required this.title,
     required this.user_name,
     required this.isDoWork,
@@ -144,8 +158,26 @@ class ThemeContainer extends StatefulWidget {
 class _ThemeContainerState extends State<ThemeContainer> {
   bool _switchValue = false;
 
+  final dio = Dio();
+
   @override
   Widget build(BuildContext context) {
+    void _toggleSwitch(bool value) async {
+      setState(() {
+        _switchValue = value;
+      });
+
+      try {
+        final response = await dio.put(
+          'http://localhost:3000/homeworks/${widget.id}/doEvent',
+          data: {'doevent': value ? 1 : 0},
+        );
+        print('Response: ${response.data}');
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
+
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Column(
@@ -159,7 +191,7 @@ class _ThemeContainerState extends State<ThemeContainer> {
               borderRadius: BorderRadius.circular(10.0),
               color: ThemeColors.white,
               border: Border.all(
-                color: widget.isDoWork
+                color: _switchValue
                     ? ThemeColors.primary
                     : ThemeColors.falseRed, // border color
                 width: 2.0, // border width
@@ -213,12 +245,7 @@ class _ThemeContainerState extends State<ThemeContainer> {
                       activeColor: ThemeColors.primary, // true일 때 색상
                       inactiveThumbColor:
                           ThemeColors.falseRed, // false일 때 버튼 색상
-                      onChanged: (value) {
-                        setState(() {
-                          _switchValue = value;
-                        });
-                        print(_switchValue); // 스위치의 상태를 출력합니다.
-                      },
+                      onChanged: _toggleSwitch,
                     ),
                   ],
                 ),
