@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/container_box.dart';
 import 'package:living_share_app/style/components/container_event_box.dart';
@@ -18,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('ko', null);
+
     getEvents();
     getHomeWork();
   }
@@ -62,6 +67,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate =
+        DateFormat('MM/dd(EEE)', 'ko').format(DateTime.now());
+
     return Scaffold(
       appBar: CustomAppbar(),
       body: SingleChildScrollView(
@@ -90,20 +98,20 @@ class _HomePageState extends State<HomePage> {
                 height: 10.0,
               ),
               // 오늘 해야할 일 섹션
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "오늘 해야할 일이에요 ⏰",
                     style:
                         TextStyles.main_title_50, // TextStyles는 자신의 프로젝트에 맞게 설정
                   ),
                   Text(
-                    "12/12(월)",
+                    formattedDate,
                     style:
                         TextStyles.main_day_50, // TextStyles는 자신의 프로젝트에 맞게 설정
-                  )
+                  ),
                 ],
               ),
               // 할 일 컨테이너
