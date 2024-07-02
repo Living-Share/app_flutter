@@ -83,7 +83,7 @@ Container EventBox({
         Row(
           children: [
             SvgPicture.asset(
-              "images/clock-icon.svg",
+              "assets/images/clock-icon.svg",
             ),
             const SizedBox(
               width: 5.0,

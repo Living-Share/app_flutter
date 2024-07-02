@@ -32,7 +32,7 @@ class _MoneyPageState extends State<MoneyPage> {
 
   void _getUser() async {
     try {
-      final response = await dio.get('$serverIp/3000/user');
+      final response = await dio.get('$serverIp/user');
       logger.d(response.data);
 
       setState(() {
@@ -50,7 +50,7 @@ class _MoneyPageState extends State<MoneyPage> {
 
   void _getMoney() async {
     try {
-      final response = await dio.get('$serverIp/3000/getMoney');
+      final response = await dio.get('$serverIp/getMoney');
       logger.d(response.data);
 
       num totalExpense = 0;
@@ -93,7 +93,7 @@ class _MoneyPageState extends State<MoneyPage> {
               currencyFormat.format(monthlyExpense),
               style: YangjuTextStyles.month_money,
             ),
-            Image.asset("images/piggy-bank.png"),
+            Image.asset("assets/images/piggy-bank.png"),
             const Divider(),
             Expanded(
               child: SingleChildScrollView(

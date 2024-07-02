@@ -113,7 +113,7 @@ class DoWorkContainer extends StatelessWidget {
                           height: 23, // 원의 지름과 같은 값으로 설정
                           color: Colors.blue, // 프로필 박스의 배경색
                           child: SvgPicture.asset(
-                            "images/default.svg",
+                            "assets/images/default.svg",
                           ),
                         ),
                       ),

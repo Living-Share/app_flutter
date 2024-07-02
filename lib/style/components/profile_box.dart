@@ -9,7 +9,7 @@ Container Profile_box({required double size}) {
       borderRadius: BorderRadius.circular(50.0),
     ),
     child: SvgPicture.asset(
-      "images/default.svg",
+      "assets/images/default.svg",
     ),
   );
 }
