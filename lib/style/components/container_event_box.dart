@@ -14,7 +14,7 @@ Container EventBox({
   required String type,
 }) {
   return Container(
-    width: Get.width * 0.8,
+    width: Get.width * 0.75,
     height: 320.0,
     decoration: BoxDecoration(
       color: ThemeColors.primary,

@@ -6,21 +6,21 @@ class TextStyles {
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w600,
     color: ThemeColors.black,
-    fontSize: 40.0,
+    fontSize: 44.0 ,
   );
 
   static const main_title_50 = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w800,
     color: ThemeColors.black,
-    fontSize: 22.0,
+    fontSize: 20.0,
   );
 
   static const main_day_50 = TextStyle(
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w800,
     color: ThemeColors.n_02,
-    fontSize: 14.0,
+    fontSize: 12.0,
   );
 
   static const event_box_custom = TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:living_share_app/Dto/constants.dart';
@@ -36,8 +37,7 @@ class _HomePageState extends State<HomePage> {
 
   void getEvents() async {
     try {
-      final response =
-          await dio.get('$serverIp/events'); // 여기에 서버 IP 주소 사용
+      final response = await dio.get('$serverIp/events'); // 여기에 서버 IP 주소 사용
       logger.d(response.data);
 
       setState(() {
@@ -87,16 +87,17 @@ class _HomePageState extends State<HomePage> {
               ),
               // EventBox 목록
               SizedBox(
-                height: 320.0, // 이벤트 박스의 높이 조정
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
+                height: 300.0, // 이벤트 박스의 높이 조정
+                child: PageView.builder(
+                  controller: PageController(viewportFraction: 0.9),
                   itemCount: events.length,
                   itemBuilder: (BuildContext context, int index) {
                     final event = events[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
                       child: EventBox(
-                        whoEvent: event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
+                        whoEvent:
+                            event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
                         whatEvent: event['event'] ?? '기본 이벤트',
                         whenEvent: event['day'] ?? '날짜 없음',
                         time: event['time'] ?? '시간 없음',
