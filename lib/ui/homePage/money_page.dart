@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -5,13 +6,76 @@ import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/components/send_money_box.dart';
 import 'package:living_share_app/style/theme/Text.dart';
+import 'package:logger/logger.dart';
 
-class MoneyPage extends StatelessWidget {
+class MoneyPage extends StatefulWidget {
   const MoneyPage({super.key});
 
   @override
+  State<MoneyPage> createState() => _MoneyPageState();
+}
+
+class _MoneyPageState extends State<MoneyPage> {
+  final NumberFormat currencyFormat = NumberFormat('#,###,##0');
+  final dio = Dio();
+  var logger = Logger();
+  int monthlyExpense = 0; // 사용자 월 지출액 변수
+  List<dynamic> users = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+    _getMoney();
+  }
+
+  void _getUser() async {
+    try {
+      final response = await dio.get('http://localhost:3000/user');
+      logger.d(response.data);
+
+      setState(() {
+        users = response.data; // 예시 응답 데이터 키
+      });
+    } catch (e) {
+      logger.e(e);
+      Get.snackbar(
+        '오류',
+        '사용자 정보를 가져오는 중에 오류가 발생했습니다.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  void _getMoney() async {
+    try {
+      final response = await dio.get('http://localhost:3000/getMoney');
+      logger.d(response.data);
+
+      num totalExpense = 0;
+      for (var item in response.data) {
+        totalExpense += (item['electricity'] ?? 0).toInt();
+        totalExpense += (item['water'] ?? 0).toInt();
+        totalExpense += (item['gas'] ?? 0).toInt();
+        totalExpense += (item['heating'] ?? 0).toInt();
+        totalExpense += (item['management_fee'] ?? 0).toInt();
+      }
+
+      setState(() {
+        monthlyExpense = totalExpense.toInt();
+      });
+    } catch (e) {
+      logger.e(e);
+      Get.snackbar(
+        "오류",
+        "돈에 대한 정보에 문제가 있어요!",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final NumberFormat currencyFormat = NumberFormat('#,###,##0');
     return Scaffold(
       appBar: CustomAppbar(),
       body: Container(
@@ -25,7 +89,7 @@ class MoneyPage extends StatelessWidget {
               style: YangjuTextStyles.month_money,
             ),
             Text(
-              currencyFormat.format(72592945),
+              currencyFormat.format(monthlyExpense),
               style: YangjuTextStyles.month_money,
             ),
             Image.asset("images/piggy-bank.png"),
@@ -33,18 +97,13 @@ class MoneyPage extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    IsSendMoney(
-                      isSend: false,
-                      userName: "인생씁다",
-                      money: 25000,
-                    ),
-                    IsSendMoney(
-                      isSend: false,
-                      userName: "인생씁다",
-                      money: 25000,
-                    ),
-                  ],
+                  children: users
+                      .map((user) => IsSendMoney(
+                            isSend: false,
+                            userName: user['name'],
+                            money: monthlyExpense / users.length,
+                          ))
+                      .toList(),
                 ),
               ),
             ),

@@ -8,7 +8,7 @@ import 'package:living_share_app/style/theme/Text.dart';
 Container IsSendMoney({
   required bool isSend,
   required String userName,
-  required int money,
+  required double money,
 }) {
   final NumberFormat currencyFormat = NumberFormat('#,##0');
   return Container(
