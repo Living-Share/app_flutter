@@ -99,7 +99,8 @@ class _MoneyPageState extends State<MoneyPage> {
                 child: Column(
                   children: users
                       .map((user) => IsSendMoney(
-                            isSend: false,
+                            id: user["id"],
+                            isSend: user["money"] == 0 ? false : true,
                             userName: user['name'],
                             money: monthlyExpense / users.length,
                           ))
