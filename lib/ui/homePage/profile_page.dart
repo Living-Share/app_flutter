@@ -18,7 +18,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
   final dio = Dio();
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
       // 상태 업데이트
       setState(() {
         userName = response.data['name'] ?? '김뽕찬'; // 기본값 설정
-        nameController.text = response.data['email'] ?? '';
+        emailController.text = response.data['email'] ?? '';
         phoneController.text = response.data['phone'] ?? '';
       });
     } catch (e) {
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _updateUserProfile() async {
-    final email = nameController.text;
+    final email = emailController.text;
     final phone = phoneController.text;
 
     try {
@@ -113,8 +113,8 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const Spacer(),
             InputBox(
-              controller: nameController,
-              labelText: '닉네임을 입력하세요.',
+              controller: emailController,
+              labelText: 'email을 입력하세요.',
             ),
             SizedBox(
               height: Get.height * 0.04,
