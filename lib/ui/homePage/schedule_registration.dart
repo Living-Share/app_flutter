@@ -136,6 +136,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
                 print('${dayController.text}');
                 print('${startTimeController.text}');
                 print('${endTimeController.text}');
+                print('선택된 인덱스: $_selectedIndex');
               },
               child: Container(
                 width: Get.width,
