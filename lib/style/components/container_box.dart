@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
@@ -110,11 +111,8 @@ class DoWorkContainer extends StatelessWidget {
                           width: 23, // 원의 지름과 같은 값으로 설정
                           height: 23, // 원의 지름과 같은 값으로 설정
                           color: Colors.blue, // 프로필 박스의 배경색
-                          child: Image.network(
-                            '', // 이미지 URL
-                            width: 25, // 이미지의 너비
-                            height: 25, // 이미지의 높이
-                            fit: BoxFit.cover, // 이미지를 박스에 맞추기 위해 cover 사용
+                          child: SvgPicture.asset(
+                            "images/default.svg",
                           ),
                         ),
                       ),
