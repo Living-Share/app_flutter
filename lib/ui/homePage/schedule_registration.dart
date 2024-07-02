@@ -29,14 +29,24 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
   Widget build(BuildContext context) {
     void _postEvent() async {
       try {
-        final response = await dio.post('http://localhost:3000/events', data: {
-          'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
-          'event': eventController.text,
-          'day': dayController.text,
-          'time': '${startTimeController.text}-${endTimeController.text}',
-          'type': _selectText, // 선택된 텍스트를 type으로 전송
-        });
-        logger.d(response.data);
+        if (_selectedIndex == 0) {
+          final response =
+              await dio.post('http://localhost:3000/events', data: {
+            'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
+            'event': eventController.text,
+            'day': dayController.text,
+            'time': '${startTimeController.text}-${endTimeController.text}',
+            'type': _selectText, // 선택된 텍스트를 type으로 전송
+          });
+          logger.d(response.data);
+        } else if (_selectedIndex == 1){
+          final response =
+              await dio.post('http://localhost:3000/homeworks', data: {
+            'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
+            'event': eventController.text,
+          });
+          logger.d(response.data);
+        }
 
         // 성공적으로 이벤트가 등록되면 경고창 또는 필요한 처리를 수행합니다.
         Get.snackbar(
@@ -76,6 +86,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
             CustomTextField(
               controller: eventController,
               hint: "ex) 부모님 방문",
+              isWork: true,
             ),
             const SizedBox(
               height: 10.0,
@@ -84,6 +95,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
             CustomTextField(
               controller: dayController,
               hint: "ex) 2024-06-29",
+              isWork: _selectedIndex == 0,
             ),
             SizedBox(
               height: Get.height * 0.05,
@@ -100,6 +112,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
                       labelStyle: const TextStyle(
                         color: ThemeColors.n_02,
                       ), // labelText 색 변경
+                      enabled: _selectedIndex == 0,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0), // 둥근 모서리
                       ),
@@ -138,6 +151,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
                       labelStyle: const TextStyle(
                         color: ThemeColors.n_02,
                       ), // labelText 색 변경
+                      enabled: _selectedIndex == 0,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0), // 둥근 모서리
                       ),
@@ -246,8 +260,9 @@ class CustomTextLabel extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
+  bool isWork;
 
-  const CustomTextField({required this.controller, required this.hint});
+  CustomTextField({required this.controller, required this.hint, required this.isWork});
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +273,7 @@ class CustomTextField extends StatelessWidget {
         labelStyle: const TextStyle(
           color: ThemeColors.n_02,
         ), // labelText 색 변경
+        enabled: isWork,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0), // 둥근 모서리
         ),
