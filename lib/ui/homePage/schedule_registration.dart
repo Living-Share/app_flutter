@@ -62,9 +62,9 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
           snackPosition: SnackPosition.BOTTOM,
         );
         await Future.delayed(Duration(seconds: 3));
-          setState(() {
-            isClickable = true;
-          });
+        setState(() {
+          isClickable = true;
+        });
       } catch (e) {
         logger.e(e);
         Get.snackbar(
@@ -271,7 +271,7 @@ class CustomTextLabel extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
-  bool isWork;
+  final bool isWork;
 
   CustomTextField(
       {required this.controller, required this.hint, required this.isWork});
