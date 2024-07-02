@@ -10,6 +10,7 @@ class DoWorkContainer extends StatelessWidget {
   final bool isDoWork;
   final dynamic context;
   final dynamic events;
+  final void Function() refreshData;
 
   const DoWorkContainer({
     Key? key,
@@ -18,6 +19,7 @@ class DoWorkContainer extends StatelessWidget {
     required this.isDoWork,
     required this.context,
     required this.events,
+    required this.refreshData,
   }) : super(key: key);
 
   @override
@@ -68,7 +70,9 @@ class DoWorkContainer extends StatelessWidget {
               ),
             );
           },
-        );
+        ).then((value) {
+          refreshData();
+        });
       },
       child: Container(
         margin: const EdgeInsets.only(top: 20),
@@ -156,9 +160,16 @@ class ThemeContainer extends StatefulWidget {
 }
 
 class _ThemeContainerState extends State<ThemeContainer> {
-  bool _switchValue = false;
+  bool _switchValue = false; // Initialize with a default value
 
   final dio = Dio();
+
+  @override
+  void initState() {
+    super.initState();
+    _switchValue =
+        widget.isDoWork; // Initialize _switchValue from widget property
+  }
 
   @override
   Widget build(BuildContext context) {

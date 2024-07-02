@@ -18,7 +18,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getHttp();
+    getEvents();
+    getHomeWork();
   }
 
   List<dynamic> events = [];
@@ -27,23 +28,36 @@ class _HomePageState extends State<HomePage> {
   final dio = Dio();
   var logger = Logger();
 
-  void getHttp() async {
+  void getEvents() async {
     try {
       final response =
           await dio.get('http://localhost:3000/events'); // 여기에 서버 IP 주소 사용
       logger.d(response.data);
+
+      setState(() {
+        events = response.data;
+      });
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  void getHomeWork() async {
+    try {
       final homeWorksResponse =
           await dio.get('http://localhost:3000/homeworks'); // 여기에 서버 IP 주소 사용
       logger.d(homeWorksResponse.data);
 
       setState(() {
-        // 응답 데이터를 상태 변수에 저장
-        events = response.data;
         homeWorks = homeWorksResponse.data;
       });
     } catch (e) {
       logger.e(e);
     }
+  }
+
+  void refreshData() {
+    getHomeWork(); // 이 함수가 호출되면 getHttp() 함수가 실행됩니다.
   }
 
   @override
@@ -100,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                   isDoWork: homework["doevent"] == 0 ? false : true,
                   context: context,
                   events: homeWorks,
+                  refreshData: refreshData,
                 );
               }).toList(),
               const SizedBox(
