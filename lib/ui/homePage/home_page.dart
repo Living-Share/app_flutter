@@ -85,15 +85,26 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyles.main_title_100, // TextStyles는 자신의 프로젝트에 맞게 설정
               ),
               // EventBox 목록
-              ...events.map((event) {
-                return EventBox(
-                  whoEvent: event['user_name'], // null 값 확인 후 기본 값 사용
-                  whatEvent: event['event'] ?? '기본 이벤트',
-                  whenEvent: event['day'] ?? '날짜 없음',
-                  time: event['time'] ?? '시간 없음',
-                  type: event['type'] ?? "이벤트",
-                );
-              }).toList(),
+              SizedBox(
+                height: 320.0, // 이벤트 박스의 높이 조정
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: events.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final event = events[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: EventBox(
+                        whoEvent: event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
+                        whatEvent: event['event'] ?? '기본 이벤트',
+                        whenEvent: event['day'] ?? '날짜 없음',
+                        time: event['time'] ?? '시간 없음',
+                        type: event['type'] ?? "이벤트",
+                      ),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(
                 height: 10.0,
               ),

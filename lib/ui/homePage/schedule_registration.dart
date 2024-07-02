@@ -15,7 +15,7 @@ class ScheduleRegistration extends StatefulWidget {
 
 class _ScheduleRegistrationState extends State<ScheduleRegistration> {
   int _selectedIndex = 0; // 선택된 컨테이너 인덱스
-  String _selectText = "";
+  String _selectText = "일정 등록";
 
   final dio = Dio();
   var logger = Logger();
@@ -27,8 +27,16 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
 
   @override
   Widget build(BuildContext context) {
+    bool isClickable = true;
+
     void _postEvent() async {
+      if (!isClickable) return;
+
       try {
+        // 클릭 가능 여부를 false로 설정
+        setState(() {
+          isClickable = false;
+        });
         if (_selectedIndex == 0) {
           final response =
               await dio.post('http://localhost:3000/events', data: {
@@ -39,7 +47,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
             'type': _selectText, // 선택된 텍스트를 type으로 전송
           });
           logger.d(response.data);
-        } else if (_selectedIndex == 1){
+        } else if (_selectedIndex == 1) {
           final response =
               await dio.post('http://localhost:3000/homeworks', data: {
             'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
@@ -47,13 +55,16 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
           });
           logger.d(response.data);
         }
-
         // 성공적으로 이벤트가 등록되면 경고창 또는 필요한 처리를 수행합니다.
         Get.snackbar(
           '성공',
           '이벤트가 성공적으로 등록되었습니다.',
           snackPosition: SnackPosition.BOTTOM,
         );
+        await Future.delayed(Duration(seconds: 3));
+          setState(() {
+            isClickable = true;
+          });
       } catch (e) {
         logger.e(e);
         Get.snackbar(
@@ -262,7 +273,8 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   bool isWork;
 
-  CustomTextField({required this.controller, required this.hint, required this.isWork});
+  CustomTextField(
+      {required this.controller, required this.hint, required this.isWork});
 
   @override
   Widget build(BuildContext context) {
