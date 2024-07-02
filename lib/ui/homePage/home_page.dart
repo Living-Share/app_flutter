@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:living_share_app/Dto/constants.dart';
 
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/container_box.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   void getEvents() async {
     try {
       final response =
-          await dio.get('http://localhost:3000/events'); // 여기에 서버 IP 주소 사용
+          await dio.get('$serverIp/events'); // 여기에 서버 IP 주소 사용
       logger.d(response.data);
 
       setState(() {
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   void getHomeWork() async {
     try {
       final homeWorksResponse =
-          await dio.get('http://localhost:3000/homeworks'); // 여기에 서버 IP 주소 사용
+          await dio.get('$serverIp/homeworks'); // 여기에 서버 IP 주소 사용
       logger.d(homeWorksResponse.data);
 
       setState(() {

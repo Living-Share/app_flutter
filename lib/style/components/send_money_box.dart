@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:living_share_app/Dto/constants.dart';
 import 'package:living_share_app/style/components/profile_box.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
@@ -39,7 +40,7 @@ class _IsSendMoneyState extends State<IsSendMoney> {
 
   void _putState(int id, bool currentIsSendValue) async {
     try {
-      final response = await dio.put('http://localhost:3000/user/$id/money');
+      final response = await dio.put('$serverIp/user/$id/money');
       logger.d(response);
       setState(() {
         isSendValue = currentIsSendValue;

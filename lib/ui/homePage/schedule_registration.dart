@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:living_share_app/Dto/constants.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
@@ -39,7 +40,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
         });
         if (_selectedIndex == 0) {
           final response =
-              await dio.post('http://localhost:3000/events', data: {
+              await dio.post('$serverIp/events', data: {
             'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
             'event': eventController.text,
             'day': dayController.text,
@@ -49,7 +50,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
           logger.d(response.data);
         } else if (_selectedIndex == 1) {
           final response =
-              await dio.post('http://localhost:3000/homeworks', data: {
+              await dio.post('$serverIp/homeworks', data: {
             'user_id': 1, // 사용자 ID를 적절히 설정해야 합니다.
             'event': eventController.text,
           });

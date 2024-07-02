@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:living_share_app/Dto/constants.dart';
 import 'package:living_share_app/style/theme/Colors.dart';
 import 'package:living_share_app/style/theme/Text.dart';
 
@@ -178,7 +179,7 @@ class _ThemeContainerState extends State<ThemeContainer> {
 
       try {
         final response = await dio.put(
-          'http://localhost:3000/homeworks/${widget.id}/doEvent',
+          '$serverIp/homeworks/${widget.id}/doEvent',
           data: {'doevent': value ? 1 : 0},
         );
         print('Response: ${response.data}');

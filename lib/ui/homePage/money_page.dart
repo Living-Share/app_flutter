@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:living_share_app/Dto/constants.dart';
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/components/send_money_box.dart';
@@ -31,7 +32,7 @@ class _MoneyPageState extends State<MoneyPage> {
 
   void _getUser() async {
     try {
-      final response = await dio.get('http://localhost:3000/user');
+      final response = await dio.get('$serverIp/3000/user');
       logger.d(response.data);
 
       setState(() {
@@ -49,7 +50,7 @@ class _MoneyPageState extends State<MoneyPage> {
 
   void _getMoney() async {
     try {
-      final response = await dio.get('http://localhost:3000/getMoney');
+      final response = await dio.get('$serverIp/3000/getMoney');
       logger.d(response.data);
 
       num totalExpense = 0;

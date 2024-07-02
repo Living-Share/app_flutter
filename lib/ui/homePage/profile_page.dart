@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:living_share_app/Dto/constants.dart';
 
 import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/input_widget.dart';
@@ -34,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _getUserProfile() async {
     try {
-      final response = await dio.get('http://localhost:3000/user/2');
+      final response = await dio.get('$serverIp/user/2');
       logger.d(response.data);
 
       // 상태 업데이트
@@ -59,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     try {
       final response = await dio.put(
-        'http://localhost:3000/user/2',
+        '$serverIp/user/2',
         data: {
           'email': email,
           'phone': phone,
