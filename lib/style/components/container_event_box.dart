@@ -14,6 +14,7 @@ Container EventBox({
   required String type,
 }) {
   return Container(
+    margin: EdgeInsets.only(right: 8),
     width: Get.width * 0.75,
     height: 320.0,
     decoration: BoxDecoration(

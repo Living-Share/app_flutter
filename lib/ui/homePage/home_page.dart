@@ -89,20 +89,17 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 300.0, // 이벤트 박스의 높이 조정
                 child: PageView.builder(
-                  controller: PageController(viewportFraction: 0.9),
+                  controller: PageController(viewportFraction: 0.95),
                   itemCount: events.length,
                   itemBuilder: (BuildContext context, int index) {
                     final event = events[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: EventBox(
-                        whoEvent:
-                            event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
-                        whatEvent: event['event'] ?? '기본 이벤트',
-                        whenEvent: event['day'] ?? '날짜 없음',
-                        time: event['time'] ?? '시간 없음',
-                        type: event['type'] ?? "이벤트",
-                      ),
+                    return EventBox(
+                      whoEvent:
+                          event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
+                      whatEvent: event['event'] ?? '기본 이벤트',
+                      whenEvent: event['day'] ?? '날짜 없음',
+                      time: event['time'] ?? '시간 없음',
+                      type: event['type'] ?? "이벤트",
                     );
                   },
                 ),
