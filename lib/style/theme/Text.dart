@@ -6,7 +6,7 @@ class TextStyles {
     fontFamily: 'Pretendart',
     fontWeight: FontWeight.w600,
     color: ThemeColors.black,
-    fontSize: 44.0 ,
+    fontSize: 44.0,
   );
 
   static const main_title_50 = TextStyle(
@@ -109,6 +109,20 @@ class TextStyles {
     fontSize: 16.0,
     color: ThemeColors.black,
   );
+
+  static const lender_page_50 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 20.0,
+    color: ThemeColors.white,
+  );
+
+  static const lender_page_100 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w800,
+    fontSize: 24.0,
+    color: ThemeColors.black,
+  );
 }
 
 class YangjuTextStyles {
@@ -122,5 +136,17 @@ class YangjuTextStyles {
     fontFamily: "YangjuByeolsanA1",
     color: ThemeColors.white,
     fontWeight: FontWeight.w400,
+  );
+
+  static const detail_money_50 = TextStyle(
+    fontFamily: "YangjuByeolsanA1",
+    color: ThemeColors.black,
+    fontSize: 14.0,
+  );
+
+  static const detail_money_100 = TextStyle(
+    fontFamily: "YangjuByeolsanA1",
+    color: ThemeColors.black,
+    fontSize: 20.0,
   );
 }

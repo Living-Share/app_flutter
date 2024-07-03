@@ -7,6 +7,7 @@ import 'package:living_share_app/style/components/app_bar.dart';
 import 'package:living_share_app/style/components/navigationBar.dart';
 import 'package:living_share_app/style/components/send_money_box.dart';
 import 'package:living_share_app/style/theme/Text.dart';
+import 'package:living_share_app/ui/moneyLending/lending.dart';
 import 'package:logger/logger.dart';
 
 class MoneyPage extends StatefulWidget {
@@ -93,7 +94,11 @@ class _MoneyPageState extends State<MoneyPage> {
               currencyFormat.format(monthlyExpense),
               style: YangjuTextStyles.month_money,
             ),
-            Image.asset("assets/images/piggy-bank.png"),
+            GestureDetector(
+                onTap: () {
+                  Get.to(const MoneyLendingPage());
+                },
+                child: Image.asset("assets/images/piggy-bank.png")),
             const Divider(),
             Expanded(
               child: SingleChildScrollView(
