@@ -1,1 +1,1 @@
-const String serverIp = 'http://10.150.151.93:3000';
+const String serverIp = 'http://172.30.1.50:3000';
