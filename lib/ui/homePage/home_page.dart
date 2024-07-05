@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:living_share_app/Dto/constants.dart';
@@ -65,6 +67,25 @@ class _HomePageState extends State<HomePage> {
     getHomeWork(); // 이 함수가 호출되면 getHttp() 함수가 실행됩니다.
   }
 
+  Future<void> _deleteEvent(int id) async {
+    logger.d(id);
+    try {
+      // 서버 URL에 맞게 수정하세요
+      await dio.delete('$serverIp/events/$id');
+
+      setState(() {
+        events.removeWhere((event) => event['id'] == id);
+      });
+      getEvents();
+      Get.snackbar('삭제 완료', '이벤트가 삭제되었습니다.',
+          snackPosition: SnackPosition.BOTTOM);
+    } catch (e) {
+      logger.e(e);
+      Get.snackbar('삭제 실패', '이벤트 삭제 중 오류가 발생했습니다.',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String formattedDate =
@@ -93,12 +114,13 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (BuildContext context, int index) {
                     final event = events[index];
                     return EventBox(
-                      whoEvent:
-                          event['user_name'] ?? '사용자', // null 값 확인 후 기본 값 사용
-                      whatEvent: event['event'] ?? '기본 이벤트',
-                      whenEvent: event['day'] ?? '날짜 없음',
-                      time: event['time'] ?? '시간 없음',
-                      type: event['type'] ?? "이벤트",
+                      whoEvent: event['user_name'],
+                      whatEvent: event['event'],
+                      whenEvent: event['day'],
+                      time: event['time'],
+                      type: event['type'],
+                      id: event['id'],
+                      onDelete: _deleteEvent,
                     );
                   },
                 ),

@@ -77,6 +77,7 @@ class _ScheduleRegistrationState extends State<ScheduleRegistration> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: CustomAppbar(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),

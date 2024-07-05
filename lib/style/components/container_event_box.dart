@@ -12,6 +12,8 @@ Container EventBox({
   required String whenEvent,
   required String time,
   required String type,
+  required int id,
+  required Function onDelete,
 }) {
   return Container(
     margin: EdgeInsets.only(right: 8),
@@ -30,7 +32,10 @@ Container EventBox({
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             EventTypeBox(child: type),
-            EventTypeBox(child: "수정하기"),
+            GestureDetector(
+              onTap: () => onDelete(id),
+              child: EventTypeBox(child: "삭제하기"),
+            ),
           ],
         ),
         const SizedBox(
