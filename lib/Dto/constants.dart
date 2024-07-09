@@ -1,1 +1,1 @@
-const String serverIp = 'http://172.30.1.50:3000';
+const String serverIp = 'backend url';
